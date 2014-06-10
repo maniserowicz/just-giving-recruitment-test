@@ -2,6 +2,6 @@
 {
     public interface ICalculateGiftAid
     {
-        decimal Calculate(decimal donation);
+        decimal Calculate(decimal donation, string eventType);
     }
 }

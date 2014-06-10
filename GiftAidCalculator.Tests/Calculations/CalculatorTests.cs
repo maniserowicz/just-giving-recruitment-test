@@ -11,11 +11,13 @@ namespace GiftAidCalculator.Tests.Calculations
         Mock<IProvideConfiguration> _configProvider;
         decimal _donation;
         Config _config;
+        string _eventType;
 
         [SetUp]
         public void Setup()
         {
             _config = new Config();
+            _eventType = "";
 
             _configProvider = new Mock<IProvideConfiguration>();
             _configProvider.Setup(x => x.GetConfiguration()).Returns(_config);
@@ -25,7 +27,7 @@ namespace GiftAidCalculator.Tests.Calculations
 
         decimal execute()
         {
-            return _calculator.Calculate(_donation);
+            return _calculator.Calculate(_donation, _eventType);
         }
 
         [TestCase(100, 0, 0)]
@@ -38,6 +40,45 @@ namespace GiftAidCalculator.Tests.Calculations
             var result = execute();
 
             Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public void adds_5_percent_supplement_to_running_events()
+        {
+            _donation = 100;
+            _config.TaxRate = 20;
+            _eventType = "running";
+
+            var result = execute();
+
+            Assert.AreEqual(26.25, result);
+        }
+
+        [Test]
+        public void adds_3_percent_supplement_to_swimming_events()
+        {
+            _donation = 100;
+            _config.TaxRate = 20;
+            _eventType = "swimming";
+
+            var result = execute();
+
+            Assert.AreEqual(25.75, result);
+        }
+
+        [TestCase("other event type")]
+        [TestCase("yet another event type")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void does_not_add_any_supplement_to_events_of_any_other_type(string type)
+        {
+            _donation = 100;
+            _config.TaxRate = 20;
+            _eventType = type;
+
+            var result = execute();
+
+            Assert.AreEqual(25, result);
         }
     }
 }

@@ -11,12 +11,14 @@ namespace GiftAidCalculator.TestConsole
         static void Main(string[] args)
         {
             Console.WriteLine("Please Enter donation amount:");
-
             decimal donationAmount = decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("Please Enter event type:");
+            string eventType = Console.ReadLine();
 
             var calculator = new Calculator(new DbConfigurationProvider(new TaxRateDatabaseProvider()));
 
-            decimal giftAidAmount = calculator.Calculate(donationAmount);
+            decimal giftAidAmount = calculator.Calculate(donationAmount, eventType);
             var formatter = new TwoDecimalPlacesGiftAidFormatter();
             string toDisplay = formatter.Format(giftAidAmount);
 
