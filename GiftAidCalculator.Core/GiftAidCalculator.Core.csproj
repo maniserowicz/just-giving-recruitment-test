@@ -45,6 +45,8 @@
     <Compile Include="Calculations\ICalculateGiftAid.cs" />
     <Compile Include="DataAccess\IProvideTaxRateFromDatabase.cs" />
     <Compile Include="DataAccess\TaxRateDatabaseProvider.cs" />
+    <Compile Include="Formatting\IFormatGiftAidForDonors.cs" />
+    <Compile Include="Formatting\TwoDecimalPlacesGiftAidFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_Infrastructure\Configuration\AppSettingsConfigurationProvider.cs" />
     <Compile Include="_Infrastructure\Configuration\Config.cs" />

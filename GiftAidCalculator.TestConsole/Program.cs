@@ -1,6 +1,7 @@
 ﻿using System;
 using GiftAidCalculator.Core.Calculations;
 using GiftAidCalculator.Core.DataAccess;
+using GiftAidCalculator.Core.Formatting;
 using GiftAidCalculator.Core._Infrastructure.Configuration;
 
 namespace GiftAidCalculator.TestConsole
@@ -16,7 +17,10 @@ namespace GiftAidCalculator.TestConsole
             var calculator = new Calculator(new DbConfigurationProvider(new TaxRateDatabaseProvider()));
 
             decimal giftAidAmount = calculator.Calculate(donationAmount);
-            Console.WriteLine(giftAidAmount);
+            var formatter = new TwoDecimalPlacesGiftAidFormatter();
+            string toDisplay = formatter.Format(giftAidAmount);
+
+            Console.WriteLine(toDisplay);
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
