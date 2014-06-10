@@ -1,5 +1,6 @@
 ﻿using System;
 using GiftAidCalculator.Core.Calculations;
+using GiftAidCalculator.Core.DataAccess;
 using GiftAidCalculator.Core._Infrastructure.Configuration;
 
 namespace GiftAidCalculator.TestConsole
@@ -12,7 +13,7 @@ namespace GiftAidCalculator.TestConsole
 
             decimal donationAmount = decimal.Parse(Console.ReadLine());
 
-            var calculator = new Calculator(new AppSettingsConfigurationProvider());
+            var calculator = new Calculator(new DbConfigurationProvider(new TaxRateDatabaseProvider()));
 
             decimal giftAidAmount = calculator.Calculate(donationAmount);
             Console.WriteLine(giftAidAmount);

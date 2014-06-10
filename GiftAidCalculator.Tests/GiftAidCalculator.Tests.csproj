@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Calculations\CalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Infrastructure\Configuration\DbConfigurationProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Calculations\Calculator.cs" />
     <Compile Include="Calculations\ICalculateGiftAid.cs" />
+    <Compile Include="DataAccess\IProvideTaxRateFromDatabase.cs" />
+    <Compile Include="DataAccess\TaxRateDatabaseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_Infrastructure\Configuration\AppSettingsConfigurationProvider.cs" />
     <Compile Include="_Infrastructure\Configuration\Config.cs" />
+    <Compile Include="_Infrastructure\Configuration\DbConfigurationProvider.cs" />
     <Compile Include="_Infrastructure\Configuration\IProvideConfiguration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
